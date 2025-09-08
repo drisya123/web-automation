@@ -1,0 +1,48 @@
+package com.selenium.learning;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import graphql.Assert;
+
+//import dev.failsafe.internal.util.Assert;
+
+public class ButtonTextVerification {
+
+	public static void main(String[] args) {
+		// Set path to chromedriver if not already set in system PATH
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\ADMIN\\Downloads\\chromedriver-win32\\chromedriver.exe");
+
+        // Initialize WebDriver
+        WebDriver driver = new ChromeDriver();
+
+        // Open sample site
+        driver.get("https://www.saucedemo.com/");
+
+        // Maximize window
+        driver.manage().window().maximize();
+
+        // Locate the login button
+        WebElement loginButton = driver.findElement(By.id("login-button"));
+
+        // Get button text
+        boolean actualText = loginButton.getText() != null;
+        System.out.println("Button Text: " + actualText);
+
+        // Expected text
+        String expectedText = "Login";
+
+        // Verify with assertion
+        Assert.assertTrue(actualText, expectedText, "Button text does not match!");
+
+        System.out.println("Button text verified successfully!");
+
+        // Close browser
+        driver.quit();
+    
+
+	}
+
+}
